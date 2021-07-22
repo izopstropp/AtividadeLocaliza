@@ -1,4 +1,5 @@
 ﻿using AtividadeLocaliza.Domain.DTO;
+using AtividadeLocaliza.Domain.Interfaces.Repositories;
 using AtividadeLocaliza.Domain.Interfaces.Services;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -15,15 +16,19 @@ namespace AtividadeLocaliza.Domain.Services
     public class DecomposicaoNumericaService : IDecomposicaoNumericaService
     {
         private readonly IConfiguration _configuration;
-        public DecomposicaoNumericaService(IConfiguration configuration)
+        private readonly IDecompositorNumericoRepository _decompositorNumericoRepository;
+        public DecomposicaoNumericaService(IConfiguration configuration, IDecompositorNumericoRepository decompositorNumericoRepository)
         {
             _configuration = configuration;
+            _decompositorNumericoRepository = decompositorNumericoRepository;
         }
 
         public async Task<NumeracaoDecomposta> DecomporNumero(long numeroBase)
         {
             var numerosDivisores = await ObterNumerosDivisiveisAsync(numeroBase);
             var numerosPrimos = await ObterNumerosPrimosAsync(numerosDivisores);
+
+            await _decompositorNumericoRepository.SalvarNumeroDecomposto(numeroBase);
 
             return new NumeracaoDecomposta
             {

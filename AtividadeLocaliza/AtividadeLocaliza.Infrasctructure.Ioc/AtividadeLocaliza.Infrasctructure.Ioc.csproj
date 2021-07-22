@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AtividadeLocaliza.Application\AtividadeLocaliza.Application.csproj" />
     <ProjectReference Include="..\AtividadeLocaliza.Domain\AtividadeLocaliza.Domain.csproj" />
+    <ProjectReference Include="..\AtividadeLocaliza.Infrastructure.Repository\AtividadeLocaliza.Infrastructure.Repository.csproj" />
   </ItemGroup>
 
 </Project>

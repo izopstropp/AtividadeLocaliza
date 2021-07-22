@@ -13,6 +13,7 @@ namespace AtividadeLocaliza.Infrasctructure.Ioc
 
             IServiceCollection dependenciasResolvidas = ApplicationModule.ResolverDependencias(serviceCollection);
             dependenciasResolvidas = DomainServiceModule.ResolverDependencias(dependenciasResolvidas);
+            dependenciasResolvidas = RepositoryModule.ResolverDependencias(dependenciasResolvidas);
 
             return dependenciasResolvidas;
         }
